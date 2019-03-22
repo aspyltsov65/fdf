@@ -15,35 +15,31 @@ CFLAGS = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
 NAME = fdf
 SRCFILL = main.c\
 		atoi_base.c\
-		ft_createlist.c\
 		ft_freelist.c\
-		ft_freeshka.c\
 		get_next_line.c\
 		ft_key_hook.c\
-		ft_drawmap.c\
 		line.c\
 		read.c\
 		ft_rotation.c\
-		ft_move.c\
-		ft_scale_map.c
+		ft_move.c
 BINS = $(SRCFILL:.c=.o)
 LIBFT = libft/
 
 all: $(NAME)
 
 $(NAME): $(BINS)
-	make -C $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(SRCFILL) libft/libft.a
+	@make -C $(LIBFT)
+	@$(CC) $(CFLAGS) -o $(NAME) $(SRCFILL) libft/libft.a
 
 .c.o:
-	$(CC) -c $(GFLAGS) $<
+	@$(CC) -c $(GFLAGS) $<
 
 clean:
-	make clean -C $(LIBFT)
-	rm -f $(BINS)
+	@make clean -C $(LIBFT)
+	@rm -f $(BINS)
 
 fclean: clean
-	make fclean -C $(LIBFT)
-	rm -f $(NAME)
+	@make fclean -C $(LIBFT)
+	@rm -f $(NAME)
 
 re: fclean all

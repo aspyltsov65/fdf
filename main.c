@@ -26,10 +26,11 @@ int	main(int argc, char **argv)
 		read_map(argv[1], fdf);
 		fdf->mlx_ptr = mlx_init();
 		fdf->win = mlx_new_window(fdf->mlx_ptr, W, H, "fdf");
+		fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, W, H);
 		ft_scale_map(&fdf);
 		ft_drawmap(fdf);
-		mlx_key_hook(fdf->win, ft_key_hook, fdf);
-		system ("leaks fdf");
+		mlx_put_image_to_window(fdf->mlx_ptr, fdf->win, fdf->img_ptr, 0, 0);
+		mlx_hook(fdf->win, 2, 0, ft_key_hook, fdf);
 		mlx_loop((void *)fdf->mlx_ptr);
 	}
 	else

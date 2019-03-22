@@ -24,3 +24,14 @@ void	ft_freelist(t_lst **head)
 		*head = time;
 	}
 }
+
+void	ft_freeshka(void ***dst, size_t i)
+{
+	while (i != 0)
+	{
+		free((*dst)[--i]);
+		(*dst)[i] = NULL;
+	}
+	free(*dst);
+	*dst = NULL;
+}

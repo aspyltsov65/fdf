@@ -37,6 +37,6 @@ unsigned int	atoi_base(char *str)
 				j = -1;
 				break ;
 			}
-	ft_strdel(&arr); 
+	ft_strdel(&arr);
 	return (num);
 }

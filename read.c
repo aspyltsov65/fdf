@@ -19,7 +19,11 @@ void	read_map(char *name_file, t_global *fdf)
 	t_lst	*list;
 
 	fdf->cy = 0;
-	fd = open(name_file, O_RDONLY);
+	if ((fd = open(name_file, O_RDONLY)) <= 0)
+	{
+		perror("error");
+		exit(1);
+	}
 	list = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -89,5 +93,24 @@ void	parse_line(t_global *fdf, char *line, int y)
 				i++;
 		}
 		x++;
+	}
+}
+
+void	ft_createlist(t_lst **list, char *content)
+{
+	t_lst	*time;
+	t_lst	*elem;
+
+	time = *list;
+	elem = (t_lst *)ft_memalloc(sizeof(t_lst));
+	elem->cont = content;
+	elem->next = NULL;
+	if (time == NULL)
+		*list = elem;
+	else
+	{
+		while (time->next)
+			time = time->next;
+		time->next = elem;
 	}
 }

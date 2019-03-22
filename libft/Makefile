@@ -84,15 +84,15 @@ COLF = $(SOURCE:.c=.o)
 all: $(NAME)
 
 $(NAME): $(COLF)
-	ar cr $@ $(COLF)
+	@ar cr $@ $(COLF)
 
 .c.o:
-	$(CC) $(CFLAGS) $<
+	@$(CC) $(CFLAGS) $<
 
 clean:
-	rm -f $(COLF)
+	@rm -f $(COLF)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

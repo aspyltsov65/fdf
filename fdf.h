@@ -44,6 +44,7 @@ typedef struct		s_global
 	int				cx;
 	void			*mlx_ptr;
 	void			*win;
+	void			*img_ptr;
 	t_point			centre;
 	t_point			**map;
 }					t_global;
@@ -65,5 +66,7 @@ void				ft_scale(t_global **fdf, int keycode);
 void				ft_scale_map(t_global **fdf);
 void				parse_map(t_global *fdf, t_lst **list);
 void				parse_line(t_global *fdf, char	*line, int y);
+void				my_mlx_pixel_put(t_global *fdf, int x, int y, int color);
+void				my_clear_window(t_global *fdf);
 
 #endif

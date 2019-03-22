@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-int	ft_key_hook(int keycode, t_global *fdf)
+int		ft_key_hook(int keycode, t_global *fdf)
 {
 	if (keycode == 53)
 	{
@@ -35,7 +35,19 @@ int	ft_key_hook(int keycode, t_global *fdf)
 		ft_move(&fdf, keycode);
 	else if (keycode == 78 || keycode == 69)
 		ft_scale(&fdf, keycode);
-	mlx_clear_window(fdf->mlx_ptr, fdf->win);
+	my_clear_window(fdf);
 	ft_drawmap(fdf);
+	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win, fdf->img_ptr, 0, 0);
 	return (0);
+}
+
+void	my_clear_window(t_global *fdf)
+{
+	int		a;
+	int		b;
+	int		c;
+	char	*arr;
+
+	arr = mlx_get_data_addr(fdf->img_ptr, &a, &b, &c);
+	ft_bzero(arr, W * H * 4);
 }

@@ -76,7 +76,7 @@ void	ft_scale(t_global **fdf, int keycode)
 				H / 2) * 1.5 + H / 2;
 				(*fdf)->map[y][x].z = (*fdf)->map[y][x].z * 1.5;
 			}
-			else  
+			else
 			{
 				(*fdf)->map[y][x].x = ((*fdf)->map[y][x].x -
 				W / 2) / 1.5 + W / 2;
@@ -85,4 +85,30 @@ void	ft_scale(t_global **fdf, int keycode)
 				(*fdf)->map[y][x].z = (*fdf)->map[y][x].z / 1.5;
 			}
 	ft_change_centre(fdf, keycode);
+}
+
+void	ft_scale_map(t_global **fdf)
+{
+	int			x;
+	int			y;
+	double		max;
+
+	max = (*fdf)->cx >= (*fdf)->cy ? (*fdf)->cx : (*fdf)->cy;
+	y = -1;
+	max = H / max;
+	y = -1;
+	while (++y < (*fdf)->cy)
+	{
+		x = -1;
+		while (++x < (*fdf)->cx)
+		{
+			(*fdf)->map[y][x].x = ((*fdf)->map[y][x].x -
+			(*fdf)->cx / 2) * max + W / 2;
+			(*fdf)->map[y][x].y = ((*fdf)->map[y][x].y -
+			(*fdf)->cy / 2) * max + H / 2;
+			(*fdf)->map[y][x].z *= max;
+		}
+	}
+	(*fdf)->centre.x = W / 2;
+	(*fdf)->centre.y = H / 2;
 }
